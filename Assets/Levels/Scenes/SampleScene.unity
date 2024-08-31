@@ -352,6 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1325181786}
   - component: {fileID: 1325181785}
+  - component: {fileID: 1325181787}
   - component: {fileID: 1325181784}
   - component: {fileID: 1325181783}
   m_Layer: 0
@@ -376,7 +377,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -386,7 +387,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1325181784
 MonoBehaviour:
@@ -401,6 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
+  runSpeed: 10
 --- !u!212 &1325181785
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -468,6 +470,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1325181787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325181782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09512f56c124dcc4a9cca22763617edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punishSpeed: 2
+  maxStamina: 10
+  currentStamina: 0
+  staminaRegenMultiplier: 2
+  staminaConsumptionMultiplier: 5
+  punishRegen: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

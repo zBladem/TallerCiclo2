@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+     PlayerStamina stamina;
     [Header("Directional Movement")]
-    [SerializeField] float walkSpeed;
-    [SerializeField] float runSpeed;
+    [SerializeField] float walkSpeed = 5;
+    [SerializeField] float runSpeed = 8;
     private float speed;
     private Vector2 moveInput;
     private bool running;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        stamina = GetComponent<PlayerStamina>();
     }
 
     void Update()
@@ -30,14 +32,18 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = moveInput * speed;
 
-        if (moveInput != Vector2.zero && !running)
+        if (!running && !stamina.Fatigued)
         {
             speed = walkSpeed;
         }
-        else if (moveInput != Vector2.zero && running)
+        else if (running && !stamina.Fatigued)
         {
             speed = runSpeed;
-        }
+        }      
 
     }
+    #region public values
+    public float Speed {get {return speed;} set { speed = value;} }
+    public bool Running { get { return running; } }
+    #endregion
 }
