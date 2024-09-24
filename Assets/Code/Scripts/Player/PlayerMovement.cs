@@ -4,7 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlayerStamina stamina;
+    private Transform hideInteract;
     private HidingSystem hidingSystem;
+
     [Header("Movement")]
     [SerializeField] float walkSpeed = 5;
     [SerializeField] float runSpeed = 7;
@@ -17,7 +19,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         stamina = GetComponent<PlayerStamina>();
-        hidingSystem = GetComponent<HidingSystem>();
+    }
+    private void Start()
+    {
+        hideInteract = GameObject.FindGameObjectWithTag("HideInteract").transform;
+        hidingSystem = hideInteract.GetComponent<HidingSystem>();        
     }
     void Update()
     {
