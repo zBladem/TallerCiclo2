@@ -3,20 +3,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-     PlayerStamina stamina;
-    [Header("Directional Movement")]
+    private PlayerStamina stamina;
+    private HidingSystem hidingSystem;
+    [Header("Movement")]
     [SerializeField] float walkSpeed = 5;
-    [SerializeField] float runSpeed = 8;
-    private float speed;
-    private Vector2 moveInput;
-    private bool running;
-
-    private void Awake()
+    [SerializeField] float runSpeed = 7;
+    [SerializeField] float tiredSpeed = 3.5f;
+    bool running;
+    float currentSpeed;
+    Vector2 moveInput;
+    public bool Running { get { return running; } }
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         stamina = GetComponent<PlayerStamina>();
+        hidingSystem = GetComponent<HidingSystem>();
     }
-
     void Update()
     {
         Movement();
@@ -26,24 +28,18 @@ public class PlayerMovement : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-        running = rb.velocity != Vector2.zero && Input.GetKey(KeyCode.LeftShift);
-
         moveInput.Normalize();
 
-        rb.velocity = moveInput * speed;
+        running = moveInput != Vector2.zero && Input.GetKey(KeyCode.LeftShift);
 
-        if (!running && !stamina.Fatigued)
-        {
-            speed = walkSpeed;
-        }
-        else if (running && !stamina.Fatigued)
-        {
-            speed = runSpeed;
-        }      
+        rb.velocity = moveInput * currentSpeed;
 
+        if (!running && !stamina.Tired && !hidingSystem.IsHiding) currentSpeed = walkSpeed;
+
+        else if (running && !stamina.Tired && !hidingSystem.IsHiding) currentSpeed = runSpeed;
+
+        else if (hidingSystem.IsHiding) currentSpeed = 0;
+
+        else if (stamina.Tired) currentSpeed = tiredSpeed;
     }
-    #region public values
-    public float Speed {get {return speed;} set { speed = value;} }
-    public bool Running { get { return running; } }
-    #endregion
 }

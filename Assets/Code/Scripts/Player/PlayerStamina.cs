@@ -1,62 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStamina : MonoBehaviour
 {
     PlayerMovement movement;
-    [SerializeField] float punishSpeed = 2;
-    [SerializeField] float maxStamina = 100;
-    public float currentStamina;
-    [SerializeField] float staminaRegenMultiplier = 3;
-    [SerializeField] float staminaConsumptionMultiplier = 4;
-    [SerializeField] float punishRegen = 1.5f;
-    private bool fatigued;
 
-    private void Awake()
+    [Header("Stamina")]
+    [SerializeField] float maxStamina = 50;
+    [SerializeField] float staminaRegen = 5;
+    [SerializeField] float staminaComsuption = 3;
+    [SerializeField] float staminaTiredRegen = 4;
+    float currentStamina;
+    private bool tired;
+    public bool Tired { get { return tired; } }
+    void Awake()
     {
-        movement = GetComponent<PlayerMovement>();
         currentStamina = maxStamina;
+        movement = GetComponent<PlayerMovement>();
     }
-    private void Update()
+    void Update()
     {
-        StaminaSystem();
+        StaminaSystem();        
     }
     private void StaminaSystem()
     {
-        if (movement.Running && !fatigued && currentStamina <= maxStamina && currentStamina != 0)
+        if (movement.Running && currentStamina != 0 && currentStamina <= maxStamina && !tired)
         {
-            currentStamina -= Time.deltaTime * staminaConsumptionMultiplier;
+            currentStamina -= Time.deltaTime * staminaComsuption;
 
             if (currentStamina <= 0)
             {
+                tired = true;
                 currentStamina = 0;
-                fatigued = true;               
             }
         }
-        else if (!movement.Running && !fatigued && currentStamina != maxStamina && currentStamina > 0)
+        else if (!movement.Running && currentStamina > 0 && currentStamina != maxStamina && !tired)
         {
-            currentStamina += Time.deltaTime * staminaRegenMultiplier;
-            if (currentStamina >= maxStamina)
-            {
-                currentStamina = maxStamina;
-            }
+            currentStamina += Time.deltaTime * staminaRegen;
+
+            if (currentStamina >= maxStamina) currentStamina = maxStamina;
         }
 
-        if (fatigued)
+        if (tired)
         {
-            currentStamina += Time.deltaTime * punishRegen;
-            movement.Speed = punishSpeed;
+            currentStamina += Time.deltaTime * staminaTiredRegen;
 
             if (currentStamina >= maxStamina)
             {
-                fatigued = false;
-                currentStamina = maxStamina;
+                tired = false;
+                currentStamina = maxStamina;                
             }
-
         }
     }
-
-    public bool Fatigued { get { return fatigued; } }
-    public float Slowness { get { return punishSpeed; } }
 }
