@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool running;
     float currentSpeed;
     Vector2 moveInput;
+    public Vector2 MoveInput { get { return moveInput; } }
     public bool Running { get { return running; } }
     void Awake()
     {
