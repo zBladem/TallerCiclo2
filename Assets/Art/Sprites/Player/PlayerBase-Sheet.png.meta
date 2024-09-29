@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6165deb316be9a245bd8d6352ebb94c3
-      internalID: 1945446764
+      spriteID: b95632e2a0bd41a4bbeae9092f9de408
+      internalID: -901199216
       vertices: []
       indices: 
       edges: []
@@ -134,9 +134,9 @@ TextureImporter:
       name: PlayerBase-Sheet_1
       rect:
         serializedVersion: 2
-        x: 122
+        x: 120
         y: 20
-        width: 31
+        width: 32
         height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8df66cfbef2a83241b99ddaf86af88bf
-      internalID: 1398925851
+      spriteID: dd2d16ecffc88b8408956089b558a4b4
+      internalID: -2066630675
       vertices: []
       indices: 
       edges: []
@@ -158,6 +158,27 @@ TextureImporter:
         x: 214
         y: 20
         width: 31
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5876c9709c1c5214a959669c6be3d390
+      internalID: -649630340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerBase-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 20
+        width: 31
         height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c3bcc3af76599b4d9169395c34340b8
-      internalID: 716191945
+      spriteID: 36ebc0d2062b87f45b94f493565fd64d
+      internalID: 1369218899
       vertices: []
       indices: 
       edges: []
@@ -183,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerBase-Sheet_0: 1945446764
-      PlayerBase-Sheet_1: 1398925851
-      PlayerBase-Sheet_2: 716191945
+      PlayerBase-Sheet_0: -901199216
+      PlayerBase-Sheet_1: -2066630675
+      PlayerBase-Sheet_2: -649630340
+      PlayerBase-Sheet_3: 1369218899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
