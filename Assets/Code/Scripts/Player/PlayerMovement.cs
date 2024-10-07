@@ -15,8 +15,13 @@ public class PlayerMovement : MonoBehaviour
     bool running;
     float currentSpeed;
     Vector2 moveInput;
+    #region Public values
     public Vector2 MoveInput { get { return moveInput; } }
     public bool Running { get { return running; } }
+    public float WalkSpeed { get { return walkSpeed; } set { walkSpeed = value; } }
+    public float RunSpeed { get { return runSpeed; } set { runSpeed = value; } }
+    public float TiredSpeed { get {return tiredSpeed; } set { tiredSpeed = value; } }
+    #endregion
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

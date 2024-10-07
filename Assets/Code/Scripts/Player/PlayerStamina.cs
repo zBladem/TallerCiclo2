@@ -8,10 +8,17 @@ public class PlayerStamina : MonoBehaviour
     [SerializeField] float maxStamina = 50;
     [SerializeField] float staminaRegen = 5;
     [SerializeField] float staminaComsuption = 3;
-    [SerializeField] float staminaTiredRegen = 4;
+    [SerializeField] float staminaPunishRegen = 4;
     float currentStamina;
     private bool tired;
+
+    #region public values
     public bool Tired { get { return tired; } }
+    public float MaxStamina { get { return maxStamina; } set { maxStamina = value; } }
+    public float StaminaRegen { get { return staminaRegen; } set { staminaRegen = value; } }
+    public float StaminaComsuption { get { return staminaComsuption; } set { staminaComsuption = value; } }
+    public float StaminaPunishRegen { get { return StaminaPunishRegen; } set { StaminaPunishRegen = value; } }
+    #endregion
     void Awake()
     {
         currentStamina = maxStamina;
@@ -42,7 +49,7 @@ public class PlayerStamina : MonoBehaviour
 
         if (tired)
         {
-            currentStamina += Time.deltaTime * staminaTiredRegen;
+            currentStamina += Time.deltaTime * StaminaPunishRegen;
 
             if (currentStamina >= maxStamina)
             {
